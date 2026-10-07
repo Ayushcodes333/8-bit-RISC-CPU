@@ -1,0 +1,38 @@
+// =============================================================================
+// File    : programs/test_program.hex
+// Project : 8-Bit Single-Cycle RISC Microprocessor
+// Format  : Plain hex for Verilog $readmemh — one 16-bit word per line
+//
+// Purpose : Exercises all R-type ALU operations (ADD, SUB, AND, OR) plus
+//           LOAD, STORE, and JUMP across an 8-instruction sequence.
+//
+// ─── Instruction Encoding Reminder ───────────────────────────────────────────
+//   [15:13] opcode | [12:11] Rd | [10:9] Rs1 | [8:7] Rs2 | [7:0] Imm
+//   R-type: {opcode, Rd, Rs1, Rs2, 7'b0}
+//   I-type: {opcode, Rd, Rs1, 1'b0, Imm[7:0]}
+//
+// ─── Data Memory Pre-Initialisation (done by top_tb.v) ───────────────────────
+//   MEM[0x10] = 0x07   (operand A)
+//   MEM[0x11] = 0x03   (operand B)
+//
+// ─── Program Trace ────────────────────────────────────────────────────────────
+//   PC | Encoding | Assembly             | Register / Memory State After
+//   ───┼──────────┼──────────────────────┼───────────────────────────────
+//    0 | 8810     | LOAD R1, [0x10]      | R1 = MEM[0x10]        = 0x07
+//    1 | 9011     | LOAD R2, [0x11]      | R2 = MEM[0x11]        = 0x03
+//    2 | 0300     | ADD  R0, R1, R2      | R0 = 0x07 + 0x03      = 0x0A
+//    3 | A020     | STORE R0, [0x20]     | MEM[0x20] = R0        = 0x0A
+//    4 | 3B00     | SUB  R3, R1, R2      | R3 = 0x07 - 0x03      = 0x04
+//    5 | 4300     | AND  R0, R1, R2      | R0 = 0x07 & 0x03      = 0x03
+//    6 | 6300     | OR   R0, R1, R2      | R0 = 0x07 | 0x03      = 0x07
+//    7 | C000     | JUMP 0x00            | PC = 0x00  (halt loop)
+// =============================================================================
+
+8810
+9011
+0300
+A020
+3B00
+4300
+6300
+C000
