@@ -61,7 +61,7 @@ vvp alu_sim
 
 ## Disclaimer
 
-This is a learning project built with AI assistance. It may contain bugs or limitations and is not intended for production use.
+This is a learning project. It may contain bugs or limitations and is not intended for production use.
 
 ## License
 
